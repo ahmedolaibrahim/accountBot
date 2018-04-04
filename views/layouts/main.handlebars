@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Account Opening Bot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    {{> _navbar}}
+    <div class="container">
+        {{{body}}}
+    </div>
+     <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+     /** (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);s
+          });
+        }, false);
+      })();
+      **/
+    
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <script>
+          $(document).ready(function(){
+            jQuery.validator.addMethod("alphanumeric", function(value, element) {
+                var patt =  new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+                return this.optional(element) || patt.test(value);
+            }, "Letters, numbers, and underscores only please");
+             $( "#signupForm" ).validate( {
+                  rules: {
+					title: "required",
+                    firstname:"required",
+                    surname:"required",
+                    answer:"required",
+                    currency:"required",
+                    tc:"required",
+                    day:{
+                        required:true,
+                        number:true,
+                        min:1,
+                        max:30
+                    },
+                    month:{
+                        required:true,
+                        number:true,
+                        min:1,
+                        max:12
+                    },
+                    year:{
+                        required:true,
+                        number:true,
+                        min:1900,
+                        max:2000
+                    },
+                    mobile:{
+                      required:true,
+                      number:true,
+                      minlength:11,
+                      maxlength:11
+                    },
+                    email:{
+                        required:true,
+                        email:true
+                    },
+                    address:{
+                        required:true,
+                        rangelength:[10,250]
+                    },
+                    username: {
+						required: true,
+						minlength:6,
+                        maxlength:15
+					},
+					password: {
+						required: true,
+						minlength: 8,
+                        alphanumeric:true
+					},
+                    question:"required"
+                    
+                  },
+                  messages: {
+					title: "Please select your title",
+                    firstname: "Please enter your firstname",
+					surname: "Please enter your surname",
+                    currency:"Please choose your preffered currency",
+                    tc:"you need to accept the terms and condition",
+                    email:{
+                        required: "Please enter your email",
+						email: "Please enter a valid email"
+                    },
+                    mobile:{
+                        required: "Please enter your mobile numbers",
+						number: "mobile digits must be numeric",
+                        minlength:"Invalid mobile number. must be 11 digits",
+                        maxlength:"Invalid mobile number. must be 11 digits"
+                    },
+					username: {
+						required: "Please enter a username",
+						minlength:"Username must be at least 6 characters",
+                        maxlength:"Username must not exceed 15 characters"
+					},
+
+                    password: {
+						required: "Password is required",
+						minlength: "Password must contain at least 8 characters",
+                        alphanumeric:"password must consist of letters, at least a number and special character"
+					},
+
+                    day: {
+						required: "Day is required",
+                        number:"Invalid day format, must be a number",
+						min: "Invalid day..",
+                        max: "Invalid day.."
+                      
+					},
+
+                    month: {
+						required: "Month is required",
+                        number:"Invalid month format, must be a number",
+						min: "Invalid month..",
+                        max: "Invalid month.."
+					},
+
+                    year: {
+						required: "Year is required",
+                        number:"Invalid Year month format, must be a number",
+						min: "Invalid year..",
+                        max: "You must be at least 18 years old to open an account"
+					},
+                    address:{
+                        required: "Address is required",
+                        rangelength:"address length is 10 and 250 characters"
+                    },
+                    question: "Please choose a security question",
+                    answer:{
+                        required: "Answer to your security question is required1"
+                    },
+				},
+
+                errorElement: "span",
+				errorPlacement: function ( error, element ) {
+                    error.addClass("invalid-feedback");
+                    error.insertAfter( element );
+				},
+                highlight: function ( element, errorClass, validClass ) {
+					$( element ).addClass("is-invalid").removeClass("is-valid");
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					$( element ).addClass("is-valid").removeClass("is-invalid");
+				}
+
+             });
+
+          });
+    </script>
+
+        
+</body>
+
+</html>
